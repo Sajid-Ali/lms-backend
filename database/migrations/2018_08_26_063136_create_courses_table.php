@@ -15,11 +15,12 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('image_cdnUrl');
             $table->string('course_name');
             $table->string('description');
             $table->integer('price');
             $table->integer('category_id');
-            $table->boolean('isPublished')->default('false');
+            $table->boolean('isPublished')->default(false);
             $table->integer('user_id');
             $table->timestamps();
         });

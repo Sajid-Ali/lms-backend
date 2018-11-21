@@ -13,13 +13,72 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('login', 'API\UserController@login');
-Route::post('register', 'API\UserController@register');
-Route::get('test','API\CourseController@index');
-Route::get('check',function(){
-    return Response()->json(['check'=>'checking']);
-});
-Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('details', 'API\UserController@details');
-    });
-    
+/* Getting Authenticated User */
+Route::get('/getAuthUser/{token}','AuthController@me');
+
+Route::post('login', 'AuthController@login');
+Route::post('register', 'AuthController@register');
+Route::post('logout','AuthController@logout');
+Route::get('user/account/{id}','UserAccountController@getBalance');
+
+/* Get Categories and send to Front End */
+
+Route::get('categories','CategoryController@index');
+
+/*
+ * Get Course of Category category_id
+ */
+
+Route::get('course/category/{category_id}','MyCourseController@getCourseOfCategory');
+
+/*
+Create course in mycourse
+*/
+Route::post('course/create','MyCourseController@createCourse');
+
+Route::get('course/all','MyCourseController@getAllCourses');
+/*
+get course in mycourse
+*/
+Route::get('course/mycourse/{userId}','MyCourseController@getMyCourses');
+
+/*
+upload course videos in mycourse
+*/
+Route::post('course/video/upload','MyCourseController@uploadCourseVideo');
+
+/*
+get course videos in mycourse
+*/
+Route::get('course/videos/{courseId}','MyCourseController@getCourseVideos');
+Route::get('course/get/{id}','MyCourseController@getThisCourse');
+
+Route::get('course/getEnrolled/{courseId}/{userId}','EnrolledCourseController@isUserEnrolled');
+Route::get('course/enroll/{userId}','EnrolledCourseController@getEnrolledCourses');
+
+
+Route::post('course/buyCourse','EnrolledCourseController@buyCourse');
+/*Enroll in Course */
+
+Route::post('course/enroll','EnrolledCourseController@enrollInCourse');
+
+/* Gig Section */
+
+/*
+ *
+ * Create Gig
+ */
+Route::get('gig/mygig/{id}','GigController@getUserGig');
+
+Route::post('gig/create','GigController@create');
+
+/*
+ *
+ * Get All Gigs
+ */
+
+Route::get('gig/all','GigController@getAllGigs');
+
+Route::get('gig/category/{category_id}','GigController@getGigOfCategory');
+
+Route::get('gig/get/{id}','GigController@getThisGig');

@@ -161,6 +161,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         //Provider for passport
         Laravel\Passport\PassportServiceProvider::class,
+        //Provider for JWT
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
     ],
 

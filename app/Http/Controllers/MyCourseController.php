@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Category;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\User;
+use App\Course;
+use App\Video;
+
+class MyCourseController extends Controller
+{
+
+    /*
+
+    * create course
+
+    */
+    public function createCourse(Request $request)
+    {
+        $course = new Course();
+        $course->image_cdnUrl = $request->image_cdnUrl;
+        $course->course_name = $request->course_name;
+        $course->description = $request->description;
+        $course->price = $request->price;
+        $course->isPublished = $request->isPublished;
+        $course->category_id = $request->category_id;
+        $course->user_id = $request->user_id;
+        $course->save();
+        $courses = User::find($request->user_id)->course;
+        return response()->json($courses);
+    }
+
+    /*
+
+    * get all the created course
+
+    */
+
+    public function getAllCourses()
+    {
+        $courses = Course::all();
+        return response()->json($courses);
+    }
+
+    public function getMyCourses($userId)
+    {
+        $courses = User::find($userId)->course;
+        return response()->json($courses);
+    }
+
+    /*
+     * Get courses of category category_id
+     */
+
+    public function getCourseOfCategory($category_id)
+    {
+        $courses = Category::find($category_id)->course;
+        return response()->json($courses);
+    }
+
+    /*
+    Upload videos for course
+    */
+
+    public function uploadCourseVideo(Request $req)
+    {
+        $video = new Video();
+        $video->uuid = $req->uuid;
+        $video->cdnUrl = $req->cdnUrl;
+        $video->title = $req->title;
+        $video->description = $req->description;
+        $video->course_id = $req->course_id;
+        $video->save();
+
+        $videos = Course::find($req->course_id)->video;
+
+        return response()->json($videos);
+    }
+
+    /*
+get course videos in mycourse
+*/
+
+    public function getCourseVideos($courseId)
+    {
+        $videos = Video::all()->where('course_id', $courseId);
+        return response()->json($videos);
+    }
+
+    public function getThisCourse($id)
+    {
+        $course = Course::find($id);
+        return response()->json($course);
+    }
+
+}
