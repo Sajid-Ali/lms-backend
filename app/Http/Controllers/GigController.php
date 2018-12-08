@@ -10,27 +10,32 @@ use Illuminate\Http\Request;
 class GigController extends Controller
 {
 
-    function getAllGigs(){
+    function getAllGigs()
+    {
         $gigs = Gig::all();
         return response()->json($gigs);
     }
 
-    function getThisGig($id){
+    function getThisGig($id)
+    {
         $gig = Gig::find($id);
         return response()->json($gig);
     }
 
-    function getGigOfCategory($category_id){
+    function getGigOfCategory($category_id)
+    {
         $gigs = Category::find($category_id)->gig;
         return response()->json($gigs);
     }
 
-    function getUserGig($id){
+    function getUserGig($id)
+    {
         $gigs = User::find($id)->gig;
         return response()->json($gigs);
     }
 
-    function create(Request $req){
+    function create(Request $req)
+    {
         $gig = new Gig();
         $gig->title = $req->title;
         $gig->description = $req->description;
@@ -45,5 +50,28 @@ class GigController extends Controller
 
         return response()->json($gigs);
 
+    }
+
+    function update(Request $req){
+        $gig = Gig::find($req->id);
+        $gig->title = $req->title;
+        $gig->description = $req->description;
+        $gig->price = $req->price;
+        $gig->image = $req->image;
+        $gig->category_id = $req->category_id;
+        $gig->duration = $req->duration;
+        $gig->user_id = $req->user_id;
+        $gig->save();
+
+        return response()->json($gig);
+    }
+
+    function deleteGig($id){
+        $gig = Gig::find($id);
+        $gig->delete();
+
+        $gigs = $gigs = User::find($gig->user_id)->gig;
+
+        return response()->json($gigs);
     }
 }

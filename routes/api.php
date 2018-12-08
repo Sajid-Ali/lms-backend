@@ -20,6 +20,7 @@ Route::post('login', 'AuthController@login');
 Route::post('register', 'AuthController@register');
 Route::post('logout','AuthController@logout');
 Route::get('user/account/{id}','UserAccountController@getBalance');
+Route::get('course/user/{id}','AuthController@getCourseUser');
 
 /* Get Categories and send to Front End */
 
@@ -36,12 +37,16 @@ Create course in mycourse
 */
 Route::post('course/create','MyCourseController@createCourse');
 
+Route::post('course/create/info','CourseInfoController@createCourseInfo');
+
+Route::get('course/courseInfo/{courseId}','CourseInfoController@getCourseInfo');
+
 Route::get('course/all','MyCourseController@getAllCourses');
 /*
 get course in mycourse
 */
 Route::get('course/mycourse/{userId}','MyCourseController@getMyCourses');
-
+Route::get('course/{id}/modules','CourseModuleController@index');
 /*
 upload course videos in mycourse
 */
@@ -72,6 +77,10 @@ Route::get('gig/mygig/{id}','GigController@getUserGig');
 
 Route::post('gig/create','GigController@create');
 
+Route::post('gig/update','GigController@update');
+
+Route::get('gig/delete/{id}','GigController@deleteGig');
+
 /*
  *
  * Get All Gigs
@@ -82,3 +91,12 @@ Route::get('gig/all','GigController@getAllGigs');
 Route::get('gig/category/{category_id}','GigController@getGigOfCategory');
 
 Route::get('gig/get/{id}','GigController@getThisGig');
+
+/*
+ *
+ * Gig Orders
+ */
+
+Route::post('gig/order','GigOrderController@orderNow');
+Route::get('user/orders/yourorders/{id}','GigOrderController@getYourOrders');
+Route::get('user/orders/orderFromYou/{id}','GigOrderController@getOrdersFromYou');

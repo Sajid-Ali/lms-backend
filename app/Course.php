@@ -37,4 +37,12 @@ class Course extends Model
         return $this->belongsTo('App\Category');
     }
 
+    function course_module(){
+        return $this->hasMany('App\CourseModule');
+    }
+
+    function course_info(){
+        return $this->hasOne('App\CourseInfo');
+    }
+
 }

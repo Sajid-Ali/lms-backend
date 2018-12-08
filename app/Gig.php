@@ -13,4 +13,8 @@ class Gig extends Model
     function user(){
         return $this->belongsTo('App\User');
     }
+
+    function gig_order(){
+        return $this->hasMany('App\GigOrder');
+    }
 }

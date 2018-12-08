@@ -12,6 +12,6 @@ class UserAccountController extends Controller
         if($account)
             return response()->json($account->balance);
 
-        return response()->json(false);
+        return response()->json(0);
     }
 }

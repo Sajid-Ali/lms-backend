@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\CourseModule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
@@ -66,17 +67,27 @@ class MyCourseController extends Controller
 
     public function uploadCourseVideo(Request $req)
     {
+
         $video = new Video();
         $video->uuid = $req->uuid;
         $video->cdnUrl = $req->cdnUrl;
         $video->title = $req->title;
         $video->description = $req->description;
         $video->course_id = $req->course_id;
+        $video->duration = $req->duration;
+        if($req->checked){
+            $courseModule = new CourseModule();
+            $courseModule->module_name = $req->module;
+            $courseModule->course_id = $req->course_id;
+            $courseModule->save();
+            $video->course_module_id = $courseModule->id;
+        }else{
+            $video->course_module_id = $req->module;
+        }
         $video->save();
-
         $videos = Course::find($req->course_id)->video;
-
-        return response()->json($videos);
+        $modules = Course::find($req->course_id)->course_module;
+        return response()->json(compact('videos','modules'));
     }
 
     /*
@@ -85,7 +96,7 @@ get course videos in mycourse
 
     public function getCourseVideos($courseId)
     {
-        $videos = Video::all()->where('course_id', $courseId);
+        $videos = Course::find($courseId)->video;
         return response()->json($videos);
     }
 

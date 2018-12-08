@@ -98,4 +98,9 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+    public function getCourseUser($id){
+        $user = Course::find($id)->user;
+        return response()->json($user);
+    }
 }

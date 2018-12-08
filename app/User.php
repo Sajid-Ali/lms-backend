@@ -47,4 +47,7 @@ class User extends Authenticatable implements JWTSubject
     function account(){
         return $this->hasOne('App\UserAccount');
     }
+    function gig_order(){
+        return $this->hasMany('App\GigOrder');
+    }
 }
