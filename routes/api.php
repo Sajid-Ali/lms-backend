@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 Route::get('/getAuthUser/{token}','AuthController@me');
 
 Route::post('login', 'AuthController@login');
+Route::post('login/password/reset','PasswordResetController@resetPassword');
+Route::post('login/newpassword','NewPasswordController@setNewPassword');
 Route::post('register', 'AuthController@register');
 Route::post('logout','AuthController@logout');
 Route::get('user/account/{id}','UserAccountController@getBalance');

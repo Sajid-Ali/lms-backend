@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\SignupRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -39,7 +40,7 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-    public function register(Request $request){
+    public function register(SignupRequest $request){
         $user = new User();
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
