@@ -45,4 +45,8 @@ class Course extends Model
         return $this->hasOne('App\CourseInfo');
     }
 
+    function course_type(){
+        return $this->belongsTo('App\CourseType');
+    }
+
 }

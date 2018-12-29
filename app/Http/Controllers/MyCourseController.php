@@ -27,6 +27,7 @@ class MyCourseController extends Controller
         $course->price = $request->price;
         $course->isPublished = $request->isPublished;
         $course->category_id = $request->category_id;
+        $course->course_type_id = $request->course_type_id;
         $course->user_id = $request->user_id;
         $course->save();
         $courses = User::find($request->user_id)->course;

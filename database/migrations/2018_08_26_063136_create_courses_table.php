@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->string('description');
             $table->integer('price');
             $table->integer('category_id');
+            $table->integer('course_type_id');
             $table->boolean('isPublished')->default(false);
             $table->integer('user_id');
             $table->timestamps();
