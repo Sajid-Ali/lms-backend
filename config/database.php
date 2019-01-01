@@ -1,7 +1,14 @@
 <?php
 
-$DATABASE_URL = parse_url('postgres://iyzojldxiyfqig:4632c3dd10c154eeadb1b573d05ed05d19c2bada019febd67ae83bacfb84f1c3@ec2-174-129-25-182.compute-1.amazonaws.com:5432/d6msifmn8s5c5g
-');
+//$DATABASE_URL = parse_url('postgres://iyzojldxiyfqig:4632c3dd10c154eeadb1b573d05ed05d19c2bada019febd67ae83bacfb84f1c3@ec2-174-129-25-182.compute-1.amazonaws.com:5432/d6msifmn8s5c5g
+//');
+
+$url = parse_url(getenv("postgres://iyzojldxiyfqig:4632c3dd10c154eeadb1b573d05ed05d19c2bada019febd67ae83bacfb84f1c3@ec2-174-129-25-182.compute-1.amazonaws.com:5432/d6msifmn8s5c5g"));
+
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
 
 
 return [
@@ -58,19 +65,30 @@ return [
             'engine' => null,
         ],
 
-        'pgsql' => [
-            'driver' => 'pgsql',
-            'host' => $DATABASE_URL["ec2-174-129-25-182.compute-1.amazonaws.com"],
-            'port' => $DATABASE_URL["5432"],
-            'database' => ltrim($DATABASE_URL["postgres://iyzojldxiyfqig:4632c3dd10c154eeadb1b573d05ed05d19c2bada019febd67ae83bacfb84f1c3@ec2-174-129-25-182.compute-1.amazonaws.com:5432/d6msifmn8s5c5g
-"], "/"),
-            'username' => $DATABASE_URL["iyzojldxiyfqig"],
-            'password' => $DATABASE_URL["4632c3dd10c154eeadb1b573d05ed05d19c2bada019febd67ae83bacfb84f1c3"],
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'require',
-        ],
+//        'pgsql' => [
+//            'driver' => 'pgsql',
+//            'host' => $DATABASE_URL["ec2-174-129-25-182.compute-1.amazonaws.com"],
+//            'port' => $DATABASE_URL["5432"],
+//            'database' => ltrim($DATABASE_URL["postgres://iyzojldxiyfqig:4632c3dd10c154eeadb1b573d05ed05d19c2bada019febd67ae83bacfb84f1c3@ec2-174-129-25-182.compute-1.amazonaws.com:5432/d6msifmn8s5c5g
+//"], "/"),
+//            'username' => $DATABASE_URL["iyzojldxiyfqig"],
+//            'password' => $DATABASE_URL["4632c3dd10c154eeadb1b573d05ed05d19c2bada019febd67ae83bacfb84f1c3"],
+//            'charset' => 'utf8',
+//            'prefix' => '',
+//            'schema' => 'public',
+//            'sslmode' => 'require',
+//        ],
+
+        'pgsql' => array(
+            'driver'   => 'pgsql',
+            'host'     => $host,
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
+            'charset'  => 'utf8',
+            'prefix'   => '',
+            'schema'   => 'public',
+        ),
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
