@@ -69,6 +69,11 @@ Route::post('course/buyCourse','EnrolledCourseController@buyCourse');
 
 Route::post('course/enroll','EnrolledCourseController@enrollInCourse');
 
+/*
+ * Live Course Routes
+ */
+
+Route::get('course/live/{userId}','LiveCourseController@index');
 /* Gig Section */
 
 /*

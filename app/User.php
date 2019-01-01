@@ -50,4 +50,8 @@ class User extends Authenticatable implements JWTSubject
     function gig_order(){
         return $this->hasMany('App\GigOrder');
     }
+
+    function liveCourse(){
+        return $this->hasMany('App\LiveCourse');
+    }
 }

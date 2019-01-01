@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\CourseModule;
+use App\LiveCourse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 use App\Course;
 use App\Video;
+use OpenTok\ArchiveMode;
+use OpenTok\MediaMode;
+use OpenTok\OpenTok;
 
 class MyCourseController extends Controller
 {
@@ -20,6 +24,30 @@ class MyCourseController extends Controller
     */
     public function createCourse(Request $request)
     {
+
+        if($request->course_type_id == 2) {
+
+            $opentok = new OpenTok("46243812", "339276c7b6c2ce32d138508ed4458fe3af0433d8");
+
+//        // A session that uses the OpenTok Media Router, which is required for archiving:
+//        $session = $opentok->createSession(array('mediaMode' => MediaMode::ROUTED));
+
+            // An automatically archived session:
+            $sessionOptions = array(
+                'archiveMode' => ArchiveMode::ALWAYS,
+                'mediaMode' => MediaMode::ROUTED
+            );
+            $session = $opentok->createSession($sessionOptions);
+            // Store this sessionId in the database for later use
+            $sessionId = $session->getSessionId();
+
+            $liveCourse = new LiveCourse();
+            $liveCourse->sessionId = $sessionId;
+            $liveCourse->user_id = $request->user_id;
+            $liveCourse->save();
+
+        }
+
         $course = new Course();
         $course->image_cdnUrl = $request->image_cdnUrl;
         $course->course_name = $request->course_name;

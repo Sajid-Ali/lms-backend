@@ -17,8 +17,8 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->string('image_cdnUrl');
             $table->string('course_name');
-            $table->string('description');
-            $table->integer('price');
+            $table->string('description')->nullable();
+            $table->integer('price')->default(0);
             $table->integer('category_id');
             $table->integer('course_type_id');
             $table->boolean('isPublished')->default(false);
