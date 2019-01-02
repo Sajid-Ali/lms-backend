@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return [
+        "message" => "this is test"
+    ];
 });
