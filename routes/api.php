@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/',function(){
+    return [
+        'test'=> 'this is test'
+    ];
+});
+
 /* Getting Authenticated User */
 Route::get('/getAuthUser/{token}','AuthController@me');
 
