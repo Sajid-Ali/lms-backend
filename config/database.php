@@ -67,7 +67,7 @@ return [
 //        ],
         'mysql' => array(
             'driver'    => 'mysql',
-            'host'      => $host,
+            'host'      => 'us-cdbr-iron-east-01.cleardb.net',
             'database'  => $database,
             'username'  => $username,
             'password'  => $password,
