@@ -17,6 +17,7 @@ class CreateLiveCoursesTable extends Migration
             $table->increments('id');
             $table->string('sessionId');
             $table->integer('user_id');
+            $table->integer('course_id');
             $table->timestamps();
         });
     }

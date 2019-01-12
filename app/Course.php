@@ -49,4 +49,8 @@ class Course extends Model
         return $this->belongsTo('App\CourseType');
     }
 
+    function course_review(){
+        return $this->hasMany('App\CourseReview');
+    }
+
 }

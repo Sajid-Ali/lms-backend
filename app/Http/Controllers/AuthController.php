@@ -42,6 +42,7 @@ class AuthController extends Controller
 
     public function register(SignupRequest $request){
         $user = new User();
+        $user->profile_pic = $request->profile_pic;
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
         $user->email = $request->email;
@@ -103,5 +104,18 @@ class AuthController extends Controller
     public function getCourseUser($id){
         $user = Course::find($id)->user;
         return response()->json($user);
+    }
+
+    public function updateProfile(Request $request){
+        $user = User::find($request->id);
+        $user->firstName = $request->firstName;
+        $user->lastName = $request->lastName;
+        $user->biography = $request->biography;
+        $user->profile_pic = $request->profile_pic;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+//
+        return $this->respondWithToken($request->token);
     }
 }

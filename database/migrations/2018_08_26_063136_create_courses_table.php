@@ -23,6 +23,7 @@ class CreateCoursesTable extends Migration
             $table->integer('course_type_id');
             $table->boolean('isPublished')->default(false);
             $table->integer('user_id');
+            $table->string('session_id')->nullable();
             $table->timestamps();
         });
     }

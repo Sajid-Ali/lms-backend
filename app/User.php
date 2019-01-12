@@ -54,4 +54,8 @@ class User extends Authenticatable implements JWTSubject
     function liveCourse(){
         return $this->hasMany('App\LiveCourse');
     }
+
+    function course_review(){
+        return $this->hasMany('App\CourseReview');
+    }
 }

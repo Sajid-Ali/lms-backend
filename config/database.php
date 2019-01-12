@@ -2,14 +2,14 @@
 
 //$DATABASE_URL = parse_url('postgres://iyzojldxiyfqig:4632c3dd10c154eeadb1b573d05ed05d19c2bada019febd67ae83bacfb84f1c3@ec2-174-129-25-182.compute-1.amazonaws.com:5432/d6msifmn8s5c5g
 //');
-$CLEARDB_DATABASE_URL = "mysql://b59794073be98b:9b2dcee1@us-cdbr-iron-east-01.cleardb.net/heroku_1240a925e2ec5ae?reconnect=true";
-
-$url = parse_url(getenv($CLEARDB_DATABASE_URL));
-
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+//$CLEARDB_DATABASE_URL = "mysql://b59794073be98b:9b2dcee1@us-cdbr-iron-east-01.cleardb.net/heroku_1240a925e2ec5ae?reconnect=true";
+//
+//$url = parse_url(getenv($CLEARDB_DATABASE_URL));
+//
+//$host = $url["host"];
+//$username = $url["user"];
+//$password = $url["pass"];
+//$database = substr($url["path"], 1);
 
 
 return [
@@ -51,30 +51,30 @@ return [
             'prefix' => '',
         ],
 
-//        'mysql' => [
-//            'driver' => 'mysql',
-//            'host' => env('DB_HOST', '127.0.0.1'),
-//            'port' => env('DB_PORT', '3306'),
-//            'database' => env('DB_DATABASE', 'forge'),
-//            'username' => env('DB_USERNAME', 'forge'),
-//            'password' => env('DB_PASSWORD', ''),
-//            'unix_socket' => env('DB_SOCKET', ''),
-//            'charset' => 'utf8mb4',
-//            'collation' => 'utf8mb4_unicode_ci',
-//            'prefix' => '',
-//            'strict' => true,
-//            'engine' => null,
-//        ],
-        'mysql' => array(
-            'driver'    => 'mysql',
-            'host'      => 'us-cdbr-iron-east-01.cleardb.net',
-            'database'  => 'heroku_1240a925e2ec5ae',
-            'username'  => 'b59794073be98b',
-            'password'  => '9b2dcee1',
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-        ),
+        'mysql' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+//        'mysql' => array(
+//            'driver'    => 'mysql',
+//            'host'      => 'us-cdbr-iron-east-01.cleardb.net',
+//            'database'  => 'heroku_1240a925e2ec5ae',
+//            'username'  => 'b59794073be98b',
+//            'password'  => '9b2dcee1',
+//            'charset'   => 'utf8',
+//            'collation' => 'utf8_unicode_ci',
+//            'prefix'    => '',
+//        ),
 
 //        'pgsql' => [
 //            'driver' => 'pgsql',
@@ -90,16 +90,16 @@ return [
 //            'sslmode' => 'require',
 //        ],
 
-        'pgsql' => array(
-            'driver'   => 'pgsql',
-            'host'     => $host,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
-            'charset'  => 'utf8',
-            'prefix'   => '',
-            'schema'   => 'public',
-        ),
+//        'pgsql' => array(
+//            'driver'   => 'pgsql',
+//            'host'     => $host,
+//            'database' => $database,
+//            'username' => $username,
+//            'password' => $password,
+//            'charset'  => 'utf8',
+//            'prefix'   => '',
+//            'schema'   => 'public',
+//        ),
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',

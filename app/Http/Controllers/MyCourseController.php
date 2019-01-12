@@ -41,10 +41,10 @@ class MyCourseController extends Controller
             // Store this sessionId in the database for later use
             $sessionId = $session->getSessionId();
 
-            $liveCourse = new LiveCourse();
-            $liveCourse->sessionId = $sessionId;
-            $liveCourse->user_id = $request->user_id;
-            $liveCourse->save();
+//            $liveCourse = new LiveCourse();
+//            $liveCourse->sessionId = $sessionId;
+//            $liveCourse->user_id = $request->user_id;
+//            $liveCourse->save();
 
         }
 
@@ -57,6 +57,7 @@ class MyCourseController extends Controller
         $course->category_id = $request->category_id;
         $course->course_type_id = $request->course_type_id;
         $course->user_id = $request->user_id;
+        $course->session_id = $sessionId;
         $course->save();
         $courses = User::find($request->user_id)->course;
         return response()->json($courses);

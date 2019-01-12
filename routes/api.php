@@ -30,6 +30,26 @@ Route::post('logout','AuthController@logout');
 Route::get('user/account/{id}','UserAccountController@getBalance');
 Route::get('course/user/{id}','AuthController@getCourseUser');
 
+/*
+ * Update User's Profile
+ */
+
+Route::post('user/updateprofile','AuthController@updateProfile');
+
+/*
+ * Course Review
+ */
+
+Route::post('user/course/review','CourseReviewController@getCourseReview');
+Route::post('user/course/create/review','CourseReviewController@setCourseReview');
+Route::get('user/course/review/all/{courseId}','CourseReviewController@getAllReviews');
+
+/*
+ *
+ * Search
+ */
+
+Route::get('search/{term}','SearchController@index');
 /* Get Categories and send to Front End */
 
 Route::get('categories','CategoryController@index');
@@ -79,7 +99,9 @@ Route::post('course/enroll','EnrolledCourseController@enrollInCourse');
  * Live Course Routes
  */
 
-Route::get('course/live/{userId}','LiveCourseController@index');
+Route::get('course/live/{courseId}','LiveCourseController@index');
+Route::get('enrolledCourse/live/{courseId}','LiveCourseController@enrolledLiveCourse');
+
 /* Gig Section */
 
 /*
