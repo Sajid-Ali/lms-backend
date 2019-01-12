@@ -24,6 +24,7 @@ class MyCourseController extends Controller
     */
     public function createCourse(Request $request)
     {
+        $course = new Course();
 
         if($request->course_type_id == 2) {
 
@@ -40,6 +41,7 @@ class MyCourseController extends Controller
             $session = $opentok->createSession($sessionOptions);
             // Store this sessionId in the database for later use
             $sessionId = $session->getSessionId();
+            $course->session_id = $sessionId;
 
 //            $liveCourse = new LiveCourse();
 //            $liveCourse->sessionId = $sessionId;
@@ -48,7 +50,7 @@ class MyCourseController extends Controller
 
         }
 
-        $course = new Course();
+
         $course->image_cdnUrl = $request->image_cdnUrl;
         $course->course_name = $request->course_name;
         $course->description = $request->description;
@@ -57,7 +59,6 @@ class MyCourseController extends Controller
         $course->category_id = $request->category_id;
         $course->course_type_id = $request->course_type_id;
         $course->user_id = $request->user_id;
-        $course->session_id = $sessionId;
         $course->save();
         $courses = User::find($request->user_id)->course;
         return response()->json($courses);
