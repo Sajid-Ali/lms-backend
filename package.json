@@ -21,7 +21,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "concurrently": "^4.1.0",
+        "concurrently": "^5.0.1",
         "g": "^2.0.1"
     }
 }
